@@ -751,36 +751,32 @@ input.toggle-switch:checked + .toggle-switch-slider:before {
 }
 
 @media (max-width: 768px) {
-    #smart-layout-grid {
-        grid-template-columns: 1fr;
-        auto-rows: auto;
-        gap: 1rem;
-    }
-    #smart-layout-grid .glass-card {
-        grid-column: span 1 !important;
-        grid-row: auto !important;
-        height: auto !important;
-        min-height: 180px;
-    }
-
+    #smart-layout-grid { grid-template-columns: 1fr; /* keep existing responsive grid intent */ }
+    #smart-layout-grid .glass-card { grid-column: span 1 !important; /* keep */ }
+  
+    /* Target the real controls bar by id, not an element name */
     #dashboard-controls {
-        flex-grow: 1;
-        justify-content: flex-end;
+      flex-grow: 1;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: nowrap;
+      width: 100%;
     }
-    #dashboard-controls .theme-control,
-    #dashboard-controls .focus-control span {
-        display: none;
+  
+    /* KEEP focus label hidden on small screens, but SHOW the theme selector */
+    #dashboard-controls .focus-control span { display: none; }
+    #dashboard-controls .theme-control { display: block !important; }
+  
+    /* Make the select fit small screens comfortably */
+    #theme-dashboard-select {
+      min-width: 160px;
+      max-width: 60vw;
     }
-
-    .modal-content {
-        width: 95%;
-        padding: 1rem;
-    }
-    
-    header h1 {
-        font-size: 1.875rem; /* 30px */
-    }
-}
+  
+    .modal-content { width: 95%; padding: 1rem; }
+    header h1 { font-size: 1.875rem; /* keep */ }
+  }
+  
 @keyframes slideInFromRight {
     from { opacity: 0; transform: translateX(24px); }
     to   { opacity: 1; transform: translateX(0); }
